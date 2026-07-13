@@ -1,0 +1,39 @@
+<tr class='publication'>
+  <td>
+    {% if publication.image %}
+    <a href="{{ publication.publisher_url }}"><img class="pub-thumbnail" src="{{ 'assets/publications' | relative_url }}/{{ publication.image }}" alt="" /></a>
+    {% endif %}
+  </td>
+  <td>
+    <div class="pub-title">
+      {% if publication.publisher_url %}
+      <a href="{{ publication.publisher_url }}">{{ publication.title }}</a>
+      {% else %}
+      {{ publication.title }}
+      {% endif %}
+    </div>
+    {% assign num_authors = publication.authors.size %}
+    {% if num_authors > 10 %}
+    <div class="pub-authors-small">
+      {% else %}
+      <div class="pub-authors">
+        {% endif %}
+        {% for author in publication.authors %}
+        {% if author contains "Sehi L'Yi" %}<b>{{ author }}</b>{% else %}{{ author }}{% endif %}{% unless
+        forloop.last %}, {% endunless %}
+        {% endfor %}
+      </div>
+      <div class="pub-venue-and-index">
+        <span class="pub-venue">{{ publication.venue_name }}</span> ({{ publication.year }}) <span class="pub-index">{{
+          publication.venue_index }}</span>
+      </div>
+      {% if publication.acceptance_rate %}
+      <div class="pub-acceptance-rate">{{ publication.acceptance_rate }}% acceptance rate</div>
+      {% endif %}
+      {% if publication.award %}
+      <div class="fa-solid fa-award"></div>
+      <span class='pub-award'>{{ publication.award }}</span>
+      {% endif %}
+
+  </td>
+  </tr>

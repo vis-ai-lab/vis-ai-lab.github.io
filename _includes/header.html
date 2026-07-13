@@ -1,0 +1,33 @@
+<header>
+  <nav>
+    <h1>
+      <a href="/" id="lab-title">
+        <img src="/assets/logo-w600px-v2.png" alt="VisAI Lab" id="lab-logo">
+      </a>
+    </h1>
+    <button id="menu-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul id="nav-menu">
+      <li><a href="/" {% if page.url == "/" %}class="active" {% endif %}>Home</a></li>
+      <li><a href="/papers/" {% if page.url == "/papers/" %}class="active" {% endif %}>Papers</a>
+      </li>
+      <li><a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+  </nav>
+</header>
+<script>
+  document.getElementById('menu-toggle').addEventListener('click', function() {
+    document.getElementById('nav-menu').classList.toggle('open');
+    this.classList.toggle('open');
+  });
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XQ5WR27SFX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XQ5WR27SFX');
+</script>

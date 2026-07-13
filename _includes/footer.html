@@ -1,0 +1,10 @@
+<footer>
+  © VisAI Lab. All rights reserved.
+</footer>
+<script>
+  const header = document.querySelector('header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 90) header.classList.add('scrolled');
+    else if (window.scrollY < 20) header.classList.remove('scrolled');
+  }, {passive: true});
+</script>

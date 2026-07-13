@@ -1,0 +1,8 @@
+<div class="news-card">
+  <div class="news-card-meta">
+    {% if news.type %}<span class="news-type">{{ news.type }}</span>{% endif %}
+    <span class="news-date">{{ news.date | date: "%b %-d, %Y" }}</span>
+  </div>
+  <div class="news-card-title">{{ news.title }}</div>
+  {% if news.desc %}<div class="news-card-desc">{{ news.desc }}</div>{% endif %}
+</div>

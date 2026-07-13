@@ -1,0 +1,27 @@
+title: VisAI Lab
+email: sehi@ust.hk
+description: >-
+  VisAI Lab
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://vis-ai-lab.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+github_username: vis-ai-lab
+
+styles:
+  - /assets/index.css
+sass:
+  style: compressed
+
+collections:
+  areas:
+    output: true
+  publications:
+    output: true
+  news:
+    output: true
+  members:
+    output: true
+  projects:
+    output: true
+
+plugins:
+  - jekyll-feed
