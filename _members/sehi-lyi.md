@@ -2,7 +2,7 @@
 order: 1
 name: Sehi L'Yi
 chinese_name: 이세희 / 李世熙
-website: /
+website: https://sehilyi.com
 role: Principal Investigator
 image: sehi-headshot.png
 ---
