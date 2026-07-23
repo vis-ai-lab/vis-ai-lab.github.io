@@ -8,7 +8,7 @@ title: VisAI Lab | Home
     <h1>HKUST Visualization and Artificial Intelligence Lab</h1>
     <span>The VisAI Lab studies at the intersection of visualization and artificial intelligence, with special emphasis on biomedical applications.</span>
     <div class="home-section">
-      <h2 id="research-themes" data-copy-section>Research Themes</h2>
+      <h2 id="research-themes" data-copy-section><span class="section-name">Research Themes</span></h2>
       <div class="areas">
           {% assign areas = site.areas | sort: 'order' %}
           {% for area in areas %}
@@ -18,7 +18,7 @@ title: VisAI Lab | Home
     </div>
 
     <div class="home-section">
-      <h2 id="selected-papers" data-copy-section>Selected Papers <small><a href="/papers">[see more]</a></small></h2>
+      <h2 id="featured-papers" data-copy-section><span class="section-name">Featured Papers</span> <small><a href="/papers">[see more]</a></small></h2>
 
       <table class="publications">
           {% assign featured_publications = site.publications | where: 'featured', true | sort: 'year' | reverse | slice: 0,10 %}
@@ -28,32 +28,11 @@ title: VisAI Lab | Home
       </table>
     </div>
 
-    <div class="home-section">
-      <h2 id="media-coverage" data-copy-section>Media Coverage</h2>
-      <table class='media'>
-          <tr>
-              <td>
-                  <div class='media-source'>
-                      <img class='media-nature-icon' src='assets/nature.png' alt=""/>
-                      <strong>Nature</strong> (TECHNOLOGY FEATURE)
-                  </div>
-                  <div class='media-title'>
-                      <a href="https://www.nature.com/articles/d41586-022-02191-z">
-                          A graphics toolkit for visualizing genome data
-                      </a>
-                  </div>
-                  <div class='media-subtitle'>
-                      Powerful 'grammar' allows geneticists to display their data in interactive and scalable illustrations.
-                  </div>
-              </td>
-          </tr>
-      </table>
-    </div>
   </div>
 
   <aside class="home-sidebar">
     <section class="sidebar-section members-section">
-      <h2 id="members" data-copy-section>Members</h2>
+      <h2 id="members" data-copy-section><span class="section-name">Members</span></h2>
       <div class="member-list">
         {% assign members = site.members | sort: 'order' %}
         {% for member in members %}
@@ -72,10 +51,10 @@ title: VisAI Lab | Home
 
     <section class="sidebar-section news-section">
       <div class="news-section-header">
-        <h2 id="news" data-copy-section>News <small><a href="{{ '/news' | relative_url }}">[see more]</a></small></h2>
+        <h2 id="news" data-copy-section><span class="section-name">News</span> <small><a href="{{ '/news' | relative_url }}">[see more]</a></small></h2>
       </div>
       <div class="news-cards">
-        {% assign latest_news = site.news | where_exp: "item", "item.type != 'SERVICE'" | sort: 'date' | reverse | slice: 0,8 %}
+        {% assign latest_news = site.news | where_exp: "item", "item.type != 'SERVICE'" | sort: 'date' | reverse | slice: 0,7 %}
         {% for news in latest_news %}
         {% include news-card.html %}
         {% endfor %}
@@ -85,12 +64,35 @@ title: VisAI Lab | Home
 </div>
 
 <script>
+  var siteHeader = document.querySelector('header');
+
+  function updateHeaderHeight() {
+    if (!siteHeader) return;
+    document.documentElement.style.setProperty('--header-height', siteHeader.offsetHeight + 'px');
+  }
+
+  updateHeaderHeight();
+
+  if (siteHeader && 'ResizeObserver' in window) {
+    new ResizeObserver(updateHeaderHeight).observe(siteHeader);
+  } else {
+    window.addEventListener('resize', updateHeaderHeight);
+  }
+
   document.querySelectorAll('[data-copy-section]').forEach(function(heading) {
     heading.addEventListener('click', function(event) {
       if (event.target.closest('a')) return;
 
-      var url = window.location.origin + window.location.pathname + '#' + heading.id;
-      navigator.clipboard.writeText(url);
+      updateHeaderHeight();
+      window.location.hash = heading.id;
+      navigator.clipboard.writeText(window.location.href);
     });
   });
+
+  if (window.location.hash) {
+    requestAnimationFrame(function() {
+      var target = document.querySelector(window.location.hash);
+      if (target) target.scrollIntoView();
+    });
+  }
 </script>

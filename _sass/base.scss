@@ -1,5 +1,5 @@
 $mobile: 800px;
-$content-width: 1300px;
+$content-width: 1500px;
 $line-height: 2.0;
 $content-pad: 1rem;
 
@@ -8,7 +8,7 @@ $color-lightgrey: #F0F0F0;
 $color-grey: #555;
 
 $font-family: 'Roboto Condensed', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-$font-size: 1rem;
+$font-size: 1.025rem;
 $font-size-large: 1.3rem;
 $font-size-larger: 1.5rem;
 $font-size-small: 0.94rem;
@@ -26,7 +26,6 @@ body {
   margin: 0;
   line-height: $line-height;
   width: 100%;
-  background-color: #FEFEFE;
   color: $text-color;
 }
 
@@ -74,27 +73,43 @@ h2 {
 
   &[data-copy-section] {
     cursor: pointer;
+    scroll-margin-top: var(--header-height, 0px);
   }
 }
 
-.home-main .home-section:nth-of-type(1) h2 {
-  background: linear-gradient(to top, rgba(213, 93, 0, 0.20) 50%, transparent 50%);
+.home-layout h2 {
+  align-items: center;
+  background: none;
+  border-bottom: 1px solid $color-lightgrey;
+  display: flex;
+  gap: 0.25em;
+  justify-content: flex-start;
+  padding-bottom: 0.15em;
+  position: relative;
+  text-align: left;
 }
 
-.home-main .home-section:nth-of-type(2) h2 {
-  background: linear-gradient(to top, rgba(230, 159, 0, 0.20) 50%, transparent 50%);
+.home-layout .home-section h2,
+.home-layout .sidebar-section h2 {
+  font-size: $font-size-large;
 }
 
-.home-main .home-section:nth-of-type(3) h2 {
-  background: linear-gradient(to top, rgba(0, 158, 115, 0.20) 50%, transparent 50%);
+.home-layout h2 .section-name {
+  background: none;
+  color: #0d0d0d;
+  display: inline-block;
+  padding: 0;
+  border-radius: 0;
+  vertical-align: bottom;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 
-.home-sidebar .sidebar-section:nth-of-type(1) h2 {
-  background: linear-gradient(to top, rgba(204, 121, 167, 0.20) 50%, transparent 50%);
-}
-
-.home-sidebar .sidebar-section:nth-of-type(2) h2 {
-  background: linear-gradient(to top, rgba(0, 114, 178, 0.20) 50%, transparent 50%);
+.home-layout h2 small {
+  align-self: flex-end;
+  position: static;
+  background: none;
+  padding-left: 0;
 }
 
 h3 {
@@ -111,9 +126,7 @@ h3 {
 
 a {
   color: $text-color;
-  text-decoration-style: dotted;
-  text-decoration-color: grey;
-  text-underline-offset: 0.2rem;
+  text-decoration: none;
   transition: all 0.2s ease;
 }
 
@@ -169,6 +182,12 @@ nav li {
 
 nav a.active {
   font-weight: $font-weight-bolder;
+}
+
+.github-link {
+  align-items: center;
+  display: inline-flex;
+  font-size: $font-size-large;
 }
 
 header {
@@ -279,13 +298,29 @@ footer {
 }
 
 footer {
-  color: $color-grey;
-  margin-top: 3rem;
-  padding: 0.2rem $content-pad;
-  text-align: left;
-  letter-spacing: 2;
+  align-items: center;
   border-top: 1px solid $color-lightgrey;
+  color: $color-grey;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 3rem;
+  padding: 1rem $content-pad;
+  text-align: center;
+  letter-spacing: 2;
   width: calc(100% - #{$content-pad * 2});
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+}
+
+@media screen and (max-width: $mobile) {
+  footer {
+    align-items: center;
+  }
 }
 
 .home-layout {
@@ -311,6 +346,7 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  min-width: 0;
   padding-left: 2rem;
 }
 
@@ -330,21 +366,36 @@ h1 {
 .areas {
   margin-top: 1rem;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-template-rows: auto auto;
-  column-gap: 1.5rem;
+  gap: 1rem;
 
   .area {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
     display: grid;
     grid-row: span 2;
     grid-template-rows: auto 1fr;
-    padding-right: 1.5rem;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    padding: 1rem;
     margin-bottom: 0.5rem;
-    border-right: 1px solid $color-lightgrey;
 
-    &:last-child {
-      border-right: none;
-      padding-right: 0;
+    .area-heading {
+      align-items: flex-start;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      padding-bottom: 0.7rem;
+    }
+
+    .area-icon {
+      color: #0d0d0d;
+      flex: 0 0 auto;
+      font-size: $font-size-large;
+      line-height: 1;
     }
 
     .area-title {
@@ -352,7 +403,6 @@ h1 {
       font-size: $font-size;
       align-self: start;
       line-height: 1.1;
-      padding-bottom: 0.7rem;
     }
 
     .area-desc {

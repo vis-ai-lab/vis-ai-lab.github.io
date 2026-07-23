@@ -1,6 +1,11 @@
 <div class='area'>
-  <div class="area-title">
-    {{ area.title }}
+  <div class="area-heading">
+    {% if area.icon %}
+    <i class="area-icon fa-solid fa-{{ area.icon }}" aria-hidden="true"></i>
+    {% endif %}
+    <div class="area-title">
+      {{ area.title }}
+    </div>
   </div>
   {% if area.desc %}
   <div class='area-desc'>
