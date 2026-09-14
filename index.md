@@ -36,7 +36,11 @@ title: VisAI Lab | Home
       <div class="member-list">
         {% assign members = site.members | sort: 'order' %}
         {% for member in members %}
-        <a class="member-card" href="{{ member.website | default: member.url }}">
+        {% if member.website %}
+        <a class="member-card" href="{{ member.website }}">
+        {% else %}
+        <div class="member-card">
+        {% endif %}
           {% if member.image %}
           <img class="member-photo" src="{{ 'assets/' | append: member.image | relative_url }}" alt="{{ member.name }}">
           {% endif %}
@@ -44,7 +48,11 @@ title: VisAI Lab | Home
             <div class="member-name">{{ member.name }}</div>
             <div class="member-role">{{ member.role }}</div>
           </div>
+        {% if member.website %}
         </a>
+        {% else %}
+        </div>
+        {% endif %}
         {% endfor %}
       </div>
     </section>

@@ -518,7 +518,7 @@ h1 {
     grid-template-columns: 72px 1fr;
     text-decoration: none;
 
-    &:hover {
+    &[href]:hover {
       .member-name {
         color: $color-grey;
       }
