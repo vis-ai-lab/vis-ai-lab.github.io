@@ -1,4 +1,6 @@
 $mobile: 800px;
+$home-sidebar-break: 1000px;
+$areas-two-row-break: 900px;
 $content-width: 1500px;
 $line-height: 2.0;
 $content-pad: 1rem;
@@ -366,7 +368,7 @@ h1 {
 .areas {
   margin-top: 1rem;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   grid-template-rows: auto auto;
   gap: 1rem;
 
@@ -413,7 +415,7 @@ h1 {
   }
 }
 
-@media screen and (max-width: $mobile) {
+@media screen and (max-width: $home-sidebar-break) {
   .home-layout {
     grid-template-columns: 1fr;
   }
@@ -423,9 +425,11 @@ h1 {
     border-top: 1px solid $color-lightgrey;
     padding-left: 0;
   }
+}
 
+@media screen and (max-width: $areas-two-row-break) {
   .areas {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
