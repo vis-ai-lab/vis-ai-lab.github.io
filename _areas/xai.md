@@ -4,5 +4,5 @@ title: AI Interpretability
 desc: Interactive visualizations for interpreting, inspecting, and reasoning about AI models
 image: assets/themes/ai-interpretability-symbol.png
 icon: lightbulb
-order: 3
+order: 4
 ---
